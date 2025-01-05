@@ -11,7 +11,6 @@ import {
   updateJobSchedule,
   fetchJobs,
 } from './api/scriptApi'
-import { Terminal } from 'lucide-react'
 import { ToastProvider, ToastContainer, useToast } from './components/Toast'
 
 function AppContent() {
@@ -119,9 +118,8 @@ function AppContent() {
     <div className="min-h-screen bg-gray-50 p-6">
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center gap-3 mb-8">
-          <Terminal className="w-8 h-8 text-blue-600" />
           <h1 className="text-3xl font-bold text-gray-900">
-            Warehouse Script Manager
+            SvennProducts - Script Processors
           </h1>
         </div>
 

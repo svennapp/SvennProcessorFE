@@ -49,3 +49,33 @@ export async function updateJobSchedule(
     throw new Error(`Failed to update schedule: ${response.statusText}`)
   }
 }
+
+export interface LogEntry {
+  timestamp: string
+  level: string
+  message: string
+}
+
+export interface LogOptions {
+  hours?: number
+  level?: string
+}
+
+export async function fetchScriptLogs(
+  scriptId: string,
+  options: LogOptions = {}
+): Promise<LogEntry[]> {
+  const params = new URLSearchParams()
+  if (options.hours) params.append('hours', options.hours.toString())
+  if (options.level) params.append('level', options.level)
+
+  const response = await fetch(
+    `${API_BASE_URL}/scripts/${scriptId}/logs?${params.toString()}`
+  )
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch logs: ${response.statusText}`)
+  }
+
+  return response.json()
+}
